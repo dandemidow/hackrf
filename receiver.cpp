@@ -3,6 +3,11 @@
 #include <cstdio>
 #include <cstdlib>
 #include <unistd.h>
+#include <signal.h>
+#include <math.h>
+#include <complex.h>
+#include <variant>
+#include <tuple>
 
 #include <libhackrf/hackrf.h>
 
@@ -77,43 +82,5 @@ int main() {
   
   hackrf_exit();
   
-  return 0;
-}
-
-int tx_callback(hackrf_transfer* transfer) {
-  /* Determine how many bytes we need to put in the buffer. */
-  // bytes_to_read = transfer->buffer_length;
-  /* Fill the buffer. */
-  // transfer->buffer
-  /* Now set the valid length to the bytes we put in the buffer. */
-  // transfer->valid_length = bytes_read;
-  
-  /* Then return normally. */
-	return 0;
-}
-
-static void tx_complete_callback(hackrf_transfer* transfer, int success) {
-	// If a transfer failed to complete
-	if (!success) { }
-	transfer->valid_length;
-	transfer->buffer;
-	// byte_count += transfer->valid_length;
-}
-
-int main2() {
-  int result;
-  int txvga_gain;
-  hackrf_device *_device {};
-  result = hackrf_set_txvga_gain(_device, txvga_gain);
-  //result |= hackrf_enable_tx_flush(device, flush_callback, NULL);
-  //result |= hackrf_set_tx_block_complete_callback(_device, tx_complete_callback);
-  result |= hackrf_start_tx(_device, tx_callback, NULL);
-  
-  
-  result = hackrf_stop_tx(_device);
-  if (result != HACKRF_SUCCESS) {
-	fprintf(stderr, "hackrf_stop_tx() failed: %d\r\n",result);
-  }
-	
   return 0;
 }
